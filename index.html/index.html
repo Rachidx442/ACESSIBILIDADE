@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Digital Seguro - Dicas de Internet para a Melhor Idade</title>
+    <!-- Tailwind CSS para estilização moderna e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configurações de Acessibilidade via Variáveis CSS */
+        :root {
+            --bg-principal: #f1f5f9;
+            --bg-card: #ffffff;
+            --texto-principal: #1e293b;
+            --texto-secundario: #475569;
+            --cor-primaria: #0d9488; /* Verde elegante e calmo */
+            --cor-primaria-hover: #115e59;
+            --cor-alerta: #e11d48; /* Vermelho para avisos */
+            --cor-sucesso: #16a34a; /* Verde para acertos */
+            --borda-card: #e2e8f0;
+            --tamanho-base: 18px;
+        }
+
+        /* Hack de CSS para Alto Contraste usando checkbox */
+        #alto-contraste-trigger:checked ~ .app-container {
+            --bg-principal: #000000;
+            --bg-card: #121212;
+            --texto-principal: #ffffff;
+            --texto-secundario: #e2e8f0;
+            --cor-primaria: #facc15; /* Amarelo de alto contraste */
+            --cor-primaria-hover: #fef08a;
+            --cor-alerta: #ff3333;
+            --cor-sucesso: #4ade80;
+            --borda-card: #ffffff;
+        }
+
+        /* Hack de CSS para Aumentar Fonte usando checkbox */
+        #fonte-grande-trigger:checked ~ .app-container {
+            --tamanho-base: 22px;
+        }
+
+        /* Aplicação dos estilos base */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            font-size: var(--tamanho-base);
+            transition: all 0.3s ease;
+        }
+
+        .texto-dinamico {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .titulo-dinamico-lg {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .titulo-dinamico-md {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        /* Estilização personalizada de elementos interativos Pure CSS */
+        .card-dica {
+            background-color: var(--bg-card);
+            border: 2px solid var(--borda-card);
+            color: var(--texto-principal);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card-dica:hover {
+            border-color: var(--cor-primaria);
+            transform: translateY(-2px);
+        }
+
+        /* Detalhes expansíveis estilizados (Acordeão do Quiz) */
+        details summary {
+            list-style: none;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] summary .seta-indicadora {
+            transform: rotate(180deg);
+        }
+
+        /* Estilos de botões que respeitam as variáveis de contraste */
+        .botao-acessivel {
+            background-color: var(--cor-primaria);
+            color: #000000;
+            font-weight: bold;
+            border: 2px solid var(--texto-principal);
+        }
+
+        /* Se for no tema padrão, o texto do botão deve ser branco para contraste */
+        #alto-contraste-trigger:not(:checked) ~ .app-container .botao-acessivel {
+            color: #ffffff;
+            border: none;
+        }
+
+        /* Foco ultra visível para navegação por teclado */
+        *:focus-visible {
+            outline: 4px solid #facc15 !important;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Triggers invisíveis para controlar os estados de acessibilidade via CSS -->
+    <input type="checkbox" id="alto-contraste-trigger" class="hidden">
+    <input type="checkbox" id="fonte-grande-trigger" class="hidden">
+
+    <!-- Container Principal do Aplicativo -->
+    <div class="app-container min-h-screen flex flex-col transition-colors duration-300">
+        
+        <!-- Barra de Acessibilidade Superior -->
+        <div class="bg-teal-950 text-white py-3 px-4 sticky top-0 z-50 shadow-md border-b-2 border-teal-800" style="background-color: var(--bg-card); color: var(--texto-principal); border-color: var(--borda-card);">
+            <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-4">
+                <span class="font-bold flex items-center gap-2 texto-dinamico" style="color: var(--texto-principal)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="stroke: var(--cor-primaria)">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    Ferramentas de Ajuda:
+                </span>
+                
+                <div class="flex flex-wrap gap-3">
+                    <!-- Botão Alternador de Fonte -->
+                    <label for="fonte-grande-trigger" class="cursor-pointer select-none inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 font-bold hover:opacity-90 transition active:scale-95 text-sm" style="border-color: var(--cor-primaria); background-color: var(--bg-principal); color: var(--texto-principal)">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Aumentar Letra</span>
+                    </label>
+
+                    <!-- Botão Alternador de Alto Contraste -->
+                    <label for="alto-contraste-trigger" class="cursor-pointer select-none inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 font-bold hover:opacity-90 transition active:scale-95 text-sm" style="border-color: var(--cor-primaria); background-color: var(--bg-principal); color: var(--texto-principal)">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                        <span>Mudar Cores (Contraste)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cabeçalho Principal (Acolhimento) -->
+        <header class="py-12 px-6 text-center border-b-2" style="background-color: var(--bg-card); border-color: var(--borda-card)">
+            <div class="max-w-3xl mx-auto">
+                <span class="px-4 py-1.5 rounded-full font-bold text-sm tracking-wide uppercase inline-block mb-4" style="background-color: var(--cor-primaria); color: var(--bg-card)">
+                    Espaço Seguro & Acessível
+                </span>
+                <h1 class="titulo-dinamico-lg mb-4" style="color: var(--texto-principal)">
+                    Guia Digital Seguro
+                </h1>
+                <p class="texto-dinamico max-w-2xl mx-auto" style="color: var(--texto-secundario)">
+                    Olá! Criamos este espaço com muito carinho para ajudar você a usar a internet, o celular e o computador sem medo. Aprenda de forma simples a se proteger de golpes e navegar com tranquilidade.
+                </p>
+            </div>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Coluna Esquerda e Central: Dicas e Simulador -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Sessão: 4 Regras de Ouro de Segurança -->
+                <section class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="p-2 rounded-lg" style="background-color: var(--cor-primaria); color: var(--bg-card)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                            </svg>
+                        </span>
+                        <h2 class="titulo-dinamico-lg" style="color: var(--texto-principal)">Conselhos de Segurança de Ouro</h2>
+                    </div>
+
+                    <!-- Grid de Dicas -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Dica 1: Senhas -->
+                        <div class="card-dica p-6 rounded-2xl flex flex-col justify-between shadow-sm">
+                            <div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 font-bold text-lg" style="background-color: var(--cor-primaria); color: var(--bg-card)">1</div>
+                                <h3 class="titulo-dinamico-md mb-2">Suas senhas são secretas</h3>
+                                <p class="texto-dinamico mb-4" style="color: var(--texto-secundario)">
+                                    Nunca anote senhas atrás do celular ou em papéis fáceis de achar. Evite usar datas de nascimento ou nomes de netos. 
+                                </p>
+                            </div>
+                            <span class="text-sm font-bold block" style="color: var(--cor-primaria)">✓ Dica: Misture letras de músicas ou frases que você gosta!</span>
+                        </div>
+
+                        <!-- Dica 2: Desconfie de mensagens urgentes -->
+                        <div class="card-dica p-6 rounded-2xl flex flex-col justify-between shadow-sm">
+                            <div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 font-bold text-lg" style="background-color: var(--cor-primaria); color: var(--bg-card)">2</div>
+                                <h3 class="titulo-dinamico-md mb-2">Cuidado com a Pressa</h3>
+                                <p class="texto-dinamico mb-4" style="color: var(--texto-secundario)">
+                                    Golpistas adoram causar urgência. Se alguém ligar ou mandar mensagem pedindo dinheiro rápido, dizendo ser um parente em apuros, pare e respire.
+                                </p>
+                            </div>
+                            <span class="text-sm font-bold block" style="color: var(--cor-primaria)">✓ Dica: Ligue de volta para o número antigo do seu parente para confirmar.</span>
+                        </div>
+
+                        <!-- Dica 3: Links perigosos -->
+                        <div class="card-dica p-6 rounded-2xl flex flex-col justify-between shadow-sm">
+                            <div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 font-bold text-lg" style="background-color: var(--cor-primaria); color: var(--bg-card)">3</div>
+                                <h3 class="titulo-dinamico-md mb-2">Atenção com Links Azuis</h3>
+                                <p class="texto-dinamico mb-4" style="color: var(--texto-secundario)">
+                                    Recebeu um link no WhatsApp prometendo brindes, dinheiro do governo ou descontos gigantes? Não clique! Bancos e lojas reais não mandam links assim.
+                                </p>
+                            </div>
+                            <span class="text-sm font-bold block" style="color: var(--cor-primaria)">✓ Dica: Na dúvida, peça ajuda para um familiar de confiança.</span>
+                        </div>
+
+                        <!-- Dica 4: Ligações do Banco -->
+                        <div class="card-dica p-6 rounded-2xl flex flex-col justify-between shadow-sm">
+                            <div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4 font-bold text-lg" style="background-color: var(--cor-primaria); color: var(--bg-card)">4</div>
+                                <h3 class="titulo-dinamico-md mb-2">O Banco não pede senhas</h3>
+                                <p class="texto-dinamico mb-4" style="color: var(--texto-secundario)">
+                                    Se ligarem dizendo que sua conta foi bloqueada ou clonada e pedirem sua senha, desligue na hora. Os bancos de verdade nunca fazem isso por ligação.
+                                </p>
+                            </div>
+                            <span class="text-sm font-bold block" style="color: var(--cor-primaria)">✓ Dica: Vá até a sua agência física ou use o número que está atrás do seu cartão.</span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Sessão: Quiz Interativo (Totalmente Sem Javascript) -->
+                <section class="p-6 md:p-8 rounded-2xl border-2" style="background-color: var(--bg-card); border-color: var(--borda-card)">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="p-2 rounded-lg" style="background-color: var(--cor-primaria); color: var(--bg-card)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </span>
+                        <div>
+                            <h2 class="titulo-dinamico-lg" style="color: var(--texto-principal)">Jogo do Treino Seguro</h2>
+                            <p class="texto-dinamico" style="color: var(--texto-secundario)">Clique nas situações abaixo para treinar o que fazer!</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        
+                        <!-- Pergunta 1 -->
+                        <details class="group p-4 rounded-xl border-2 transition-colors duration-200" style="border-color: var(--borda-card); background-color: var(--bg-principal)">
+                            <summary class="flex justify-between items-center font-bold text-lg select-none">
+                                <span class="pr-4 texto-dinamico flex items-center gap-2">
+                                    <span class="text-xl">📱</span>
+                                    Situação 1: Mensagem de número desconhecido no WhatsApp dizendo: "Oi pai/mãe, mudei de celular. Preciso de um Pix urgente." O que fazer?
+                                </span>
+                                <span class="seta-indicadora transition-transform duration-200 flex-shrink-0" style="color: var(--cor-primaria)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </summary>
+                            
+                            <div class="mt-4 pt-4 border-t-2 border-dashed space-y-4" style="border-color: var(--borda-card)">
+                                <div class="p-3 rounded-lg flex items-start gap-3" style="background-color: var(--bg-card)">
+                                    <span class="text-xl" style="color: var(--cor-alerta)">❌</span>
+                                    <div>
+                                        <strong class="texto-dinamico block" style="color: var(--cor-alerta)">AÇÃO PERIGOSA:</strong>
+                                        <p class="texto-dinamico text-sm" style="color: var(--texto-secundario)">Fazer o Pix na hora com medo de que seja verdade. Golpistas usam fotos dos seus familiares para te enganar.</p>
+                                    </div>
+                                </div>
+                                <div class="p-3 rounded-lg flex items-start gap-3" style="background-color: var(--bg-card)">
+                                    <span class="text-xl" style="color: var(--cor-sucesso)">✔</span>
+                                    <div>
+                                        <strong class="texto-dinamico block" style="color: var(--cor-sucesso)">AÇÃO SEGURA (CORRETO):</strong>
+                                        <p class="texto-dinamico text-sm" style="color: var(--texto-secundario)">Ligue para o número antigo do seu parente ou ligue por chamada de vídeo para o novo número para ver quem realmente atende.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Pergunta 2 -->
+                        <details class="group p-4 rounded-xl border-2 transition-colors duration-200" style="border-color: var(--borda-card); background-color: var(--bg-principal)">
+                            <summary class="flex justify-between items-center font-bold text-lg select-none">
+                                <span class="pr-4 texto-dinamico flex items-center gap-2">
+                                    <span class="text-xl">💳</span>
+                                    Situação 2: Você recebe um SMS: "Sua compra de R$ 2.500 nas Lojas XYZ foi aprovada. Se não foi você, ligue para 0800-0000". O que fazer?
+                                </span>
+                                <span class="seta-indicadora transition-transform duration-200 flex-shrink-0" style="color: var(--cor-primaria)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </summary>
+                            
+                            <div class="mt-4 pt-4 border-t-2 border-dashed space-y-4" style="border-color: var(--borda-card)">
+                                <div class="p-3 rounded-lg flex items-start gap-3" style="background-color: var(--bg-card)">
+                                    <span class="text-xl" style="color: var(--cor-alerta)">❌</span>
+                                    <div>
+                                        <strong class="texto-dinamico block" style="color: var(--cor-alerta)">AÇÃO PERIGOSA:</strong>
+                                        <p class="texto-dinamico text-sm" style="color: var(--texto-secundario)">Ligar desesperadamente para o número que está no SMS. Eles vão simular um atendimento de banco falso para roubar suas senhas.</p>
+                                    </div>
+                                </div>
+                                <div class="p-3 rounded-lg flex items-start gap-3" style="background-color: var(--bg-card)">
+                                    <span class="text-xl" style="color: var(--cor-sucesso)">✔</span>
+                                    <div>
+                                        <strong class="texto-dinamico block" style="color: var(--cor-sucesso)">AÇÃO SEGURA (CORRETO):</strong>
+                                        <p class="texto-dinamico text-sm" style="color: var(--texto-secundario)">Apague a mensagem. Abra o aplicativo oficial do seu banco ou ligue para o telefone impresso no verso do seu cartão físico para conferir o extrato.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Pergunta 3 -->
+                        <details class="group p-4 rounded-xl border-2 transition-colors duration-200" style="border-color: var(--borda-card); background-color: var(--bg-principal)">
+                            <summary class="flex justify-between items-center font-bold text-lg select-none">
+                                <span class="pr-4 texto-dinamico flex items-center gap-2">
+                                    <span class="text-xl">🎁</span>
+                                    Situação 3: Um anúncio no celular diz que você ganhou uma batedeira de graça, só precisa pagar o frete de R$ 15,00 pelo Pix. O que fazer?
+                                </span>
+                                <span class="seta-indicadora transition-transform duration-200 flex-shrink-0" style="color: var(--cor-primaria)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </summary>
+                            
+                            <div class="mt-4 pt-4 border-t-2 border-dashed space-y-4" style="border-color: var(--borda-card)">
+                                <div class="p-3 rounded-lg flex items-start gap-3" style="background-color: var(--bg-card)">
+                                    <span class="text-xl" style="color: var(--cor-alerta)">❌</span>
+                                    <div>
+                                        <strong class="texto-dinamico block" style="color: var(--cor-alerta)">AÇÃO PERIGOSA:</strong>
+                                        <p class="texto-dinamico text-sm" style="color: var(--texto-secundario)">Fazer o Pix achando que é um valor baixo. Além de perder os R$ 15,00, você pode estar expondo seus dados bancários a sites clonados.</p>
+                                    </div>
+                                </div>
+                                <div class="p-3 rounded-lg flex items-start gap-3" style="background-color: var(--bg-card)">
+                                    <span class="text-xl" style="color: var(--cor-sucesso)">✔</span>
+                                    <div>
+                                        <strong class="texto-dinamico block" style="color: var(--cor-sucesso)">AÇÃO SEGURA (CORRETO):</strong>
+                                        <p class="texto-dinamico text-sm" style="color: var(--texto-secundario)">Ignore. Lembre-se do ditado: "Quando a esmola é demais, o santo desconfia". Nenhuma empresa séria dá produtos caros de graça cobrando frete por canais informais.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Coluna Direita: Painel de Emergência e Agenda de Apoio -->
+            <div class="space-y-8">
+                
+                <!-- Sessão: SOS - Caí num golpe, o que eu faço? -->
+                <section class="p-6 rounded-2xl border-2 flex flex-col justify-between h-full" style="background-color: var(--bg-card); border-color: var(--cor-alerta)">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="p-2 rounded-lg text-white" style="background-color: var(--cor-alerta)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </span>
+                            <h2 class="titulo-dinamico-lg" style="color: var(--texto-principal)">Fui Enganado! O que fazer?</h2>
+                        </div>
+                        
+                        <p class="texto-dinamico mb-6 font-semibold" style="color: var(--texto-principal)">
+                            Mantenha a calma! Todo mundo pode errar. Siga estes 3 passos urgentes para se proteger:
+                        </p>
+
+                        <!-- Passo a Passo -->
+                        <div class="space-y-4">
+                            <div class="flex gap-3">
+                                <span class="font-black text-xl" style="color: var(--cor-alerta)">01.</span>
+                                <div>
+                                    <h4 class="font-bold texto-dinamico" style="color: var(--texto-principal)">Ligue para o seu Banco</h4>
+                                    <p class="text-sm" style="color: var(--texto-secundario)">Peça para bloquear temporariamente sua senha, o aplicativo do celular e o seu cartão.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3">
+                                <span class="font-black text-xl" style="color: var(--cor-alerta)">02.</span>
+                                <div>
+                                    <h4 class="font-bold texto-dinamico" style="color: var(--texto-principal)">Fale com um familiar</h4>
+                                    <p class="text-sm" style="color: var(--texto-secundario)">Avise um filho, neto ou vizinho de confiança. Eles podem te ajudar a fazer ligações e conferir os aplicativos.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3">
+                                <span class="font-black text-xl" style="color: var(--cor-alerta)">03.</span>
+                                <div>
+                                    <h4 class="font-bold texto-dinamico" style="color: var(--texto-principal)">Faça um Boletim de Ocorrência</h4>
+                                    <p class="text-sm" style="color: var(--texto-secundario)">Você pode fazer pela internet com a ajuda de alguém ou ir até a delegacia de polícia mais próxima.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t-2" style="border-color: var(--borda-card)">
+                        <p class="text-xs text-center" style="color: var(--texto-secundario)">Lembre-se: Você é a vítima, a culpa nunca é sua!</p>
+                    </div>
+                </section>
+
+                <!-- Sessão: Números Úteis Interativos (Fácil Acesso) -->
+                <section class="p-6 rounded-2xl border-2" style="background-color: var(--bg-card); border-color: var(--borda-card)">
+                    <h3 class="titulo-dinamico-md mb-4 flex items-center gap-2" style="color: var(--texto-principal)">
+                        <span>📞</span> Telefones Úteis de Apoio
+                    </h3>
+                    
+                    <p class="text-sm mb-4" style="color: var(--texto-secundario)">
+                        Clique nos botões abaixo para fazer uma ligação direta do seu celular:
+                    </p>
+
+                    <div class="space-y-3">
+                        <a href="tel:190" class="botao-acessivel flex items-center justify-between p-4 rounded-xl shadow-sm transition hover:opacity-90 active:scale-95">
+                            <span class="font-bold texto-dinamico">🚨 Polícia Militar</span>
+                            <span class="font-black">Ligar 190</span>
+                        </a>
+
+                        <a href="tel:100" class="botao-acessivel flex items-center justify-between p-4 rounded-xl shadow-sm transition hover:opacity-90 active:scale-95">
+                            <span class="font-bold texto-dinamico">👵 Direitos do Idoso</span>
+                            <span class="font-black">Ligar 100</span>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6 p-4 rounded-xl border-2 border-dashed text-center" style="border-color: var(--borda-card); background-color: var(--bg-principal)">
+                        <span class="text-xs font-bold uppercase tracking-wider block mb-1" style="color: var(--texto-secundario)">Espaço para anotar</span>
+                        <p class="font-bold text-sm" style="color: var(--texto-principal)">Escreva no seu caderno:</p>
+                        <p class="text-xs italic mt-1" style="color: var(--texto-secundario)">"Número do Banco da minha conta principal: _____"</p>
+                    </div>
+                </section>
+
+            </div>
+
+        </main>
+
+        <!-- Rodapé do Aplicativo -->
+        <footer class="py-8 px-4 text-center border-t-2" style="background-color: var(--bg-card); border-color: var(--borda-card)">
+            <div class="max-w-3xl mx-auto space-y-4">
+                <p class="texto-dinamico" style="color: var(--texto-secundario)">
+                    <strong>Guia Digital Seguro</strong> - Desenvolvido com carinho para proteger quem sempre cuidou de nós.
+                </p>
+                <p class="text-xs" style="color: var(--texto-secundario)">
+                    Feito com 💚 usando exclusivamente tecnologias limpas de acessibilidade (HTML5 e CSS3). Sem coleta de dados.
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
